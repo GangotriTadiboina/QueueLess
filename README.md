@@ -44,28 +44,36 @@ The project demonstrates practical backend development using FastAPI and Postgre
 
 ## Architecture Diagram
 
+## System Architecture
+
 The following diagram illustrates the QueueLess application architecture.
 
 ```mermaid
 flowchart TD
-    A[Customer / Staff] --> B[Swagger UI / API Client]
-    B --> C[FastAPI Application]
+    A["Customer / Staff"] --> B["Swagger UI / API Client"]
+    B --> C["FastAPI Application"]
 
-    C --> D[Authentication Router]
-    C --> E[User Router]
-    C --> F[Service Router]
-    C --> G[Queue Router]
+    C --> D["Authentication Router"]
+    C --> E["User Router"]
+    C --> F["Service Router"]
+    C --> G["Queue Router"]
 
-    D --> H[JWT Authentication]
-    E --> I[Business Logic]
+    D --> H["JWT Authentication"]
+
+    E --> I["SQLAlchemy ORM"]
     F --> I
     G --> I
 
-    I --> J[SQLAlchemy ORM]
-    J --> K[(PostgreSQL Database)]
+    G --> J["Queue Status Service"]
+    G --> K["Waiting Time Estimation"]
 
-    G --> L[Queue Position Calculation]
-    L --> M[Waiting Time Estimation]
+    J --> I
+    K --> I
+    I --> L[("PostgreSQL Database")]
+
+    G --> M["WebSocket Endpoint"]
+    M <--> N["Connection Manager"]
+    N <--> A
 ```
 
 ## Project Screenshots
