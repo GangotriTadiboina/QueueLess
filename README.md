@@ -191,7 +191,7 @@ QueueLess/
 │   ├── websocket/
 │   │   └── manager.py
 │   └── tests/
-├── .env
+├── .env (created locally; not committed to GitHub)
 ├── .gitignore
 ├── requirements.txt
 └── README.md
