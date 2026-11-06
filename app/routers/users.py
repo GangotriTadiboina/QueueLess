@@ -41,7 +41,7 @@ def create_user(
         name=user.name,
         email=user.email,
         password=hash_password(user.password),
-        role="customer",
+        role=user.role,
         is_active=True,
     )
 
