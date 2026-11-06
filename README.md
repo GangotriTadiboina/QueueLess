@@ -178,8 +178,8 @@ QueueLess/
 │   │   ├── services.py
 │   │   └── queues.py
 │   ├── services/
-│   │   ├── queue_service.py
-│   │   └── estimation.py
+│   │   ├── queue_services.py
+│   │   └── estimations.py
 │   ├── websocket/
 │   │   └── manager.py
 │   └── tests/
