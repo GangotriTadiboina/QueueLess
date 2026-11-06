@@ -2,6 +2,12 @@
 
 A FastAPI-powered backend system designed to simplify queue management through REST APIs, JWT authentication, WebSocket communication, and waiting-time estimation.
 
+## Live Demo
+
+- **API Base URL:** https://queueless-leg1.onrender.com
+- **API Documentation (Swagger):** https://queueless-leg1.onrender.com/docs
+- **GitHub Repository:** https://github.com/GangotriTadiboina/QueueLess
+
 ## Overview
 
 QueueLess is a backend application designed to manage service queues digitally. It provides functionality for managing users and services, handling queue entries, tracking queue progress, and estimating customer waiting times.
@@ -9,17 +15,19 @@ QueueLess is a backend application designed to manage service queues digitally. 
 The project demonstrates practical backend development using FastAPI and PostgreSQL, with a focus on API design, authentication, database integration, and modular architecture.
 
 ## Key Features
+- Customer and staff registration
+- JWT-based authentication
+- Role-based access control
+- Service and queue management
+- Automatic queue token generation
+- Queue position tracking
+- Estimated waiting time calculation
+- Queue entry status management
+- Service lifecycle management
+- PostgreSQL database integration
+- Cloud deployment using Render
 
-- **User Management:** Provides APIs for creating and retrieving user information.
-- **JWT Authentication:** Implements token-based authentication for protected endpoints.
-- **Service Management:** Supports creating and retrieving services.
-- **Queue Management:** Supports queue creation and customer queue entries.
-- **Queue Status Tracking:** Allows customers to check queue status and progress.
-- **Waiting-Time Estimation:** Includes logic for estimating customer waiting times.
-- **Queue Processing:** Supports serving queue entries and finishing service.
-- **WebSocket Support:** Includes a dedicated module for WebSocket connection management.
-- **PostgreSQL Integration:** Uses PostgreSQL for persistent relational data storage.
-- **Automated Testing:** Includes tests for application behavior.
+
 
 ## Technology Stack
 
@@ -36,33 +44,57 @@ The project demonstrates practical backend development using FastAPI and Postgre
 
 ## Architecture Diagram
 
-The following diagram illustrates the main components and interactions within QueueLess.
+The following diagram illustrates the QueueLess application architecture.
 
 ```mermaid
 flowchart TD
-    C[Client / API Consumer]
-    D[Swagger UI]
-    A[FastAPI Application]
-    R[API Routers]
-    AU[JWT Authentication]
-    S[Business Services]
-    W[WebSocket Manager]
-    DB[(PostgreSQL Database)]
-    E[Waiting-Time Estimation]
+    A[Customer / Staff] --> B[Swagger UI / API Client]
+    B --> C[FastAPI Application]
 
-    C --> A
-    D --> A
-    A --> R
-    R --> AU
-    R --> S
-    R --> W
-    S --> DB
-    S --> E
-    E --> DB
-    W <--> C
+    C --> D[Authentication Router]
+    C --> E[User Router]
+    C --> F[Service Router]
+    C --> G[Queue Router]
+
+    D --> H[JWT Authentication]
+    E --> I[Business Logic]
+    F --> I
+    G --> I
+
+    I --> J[SQLAlchemy ORM]
+    J --> K[(PostgreSQL Database)]
+
+    G --> L[Queue Position Calculation]
+    L --> M[Waiting Time Estimation]
 ```
 
-### Architecture Components
+## Project Screenshots
+
+### Swagger API Documentation
+
+![QueueLess Swagger Documentation](docs/screenshots/01-swagger.png)
+
+### User Registration
+
+![QueueLess User Registration](docs/screenshots/02-registration.png)
+
+### User Authentication
+
+![QueueLess Authentication](docs/screenshots/03-authentication.png)
+
+### Queue Management Workflow
+
+![QueueLess Queue Workflow](docs/screenshots/04-queue-workflow.png)
+
+### Staff Queue Management
+
+![QueueLess Staff Queue Management](docs/screenshots/05-staff-queue-management.png)
+
+### Cloud Deployment
+
+![QueueLess Render Deployment](docs/screenshots/06-render.png)
+
+## Architecture Components
 
 - **Client:** Sends HTTP requests and can establish WebSocket connections where supported.
 - **FastAPI Application:** Receives requests and coordinates application functionality.
@@ -244,15 +276,13 @@ Configure the test database before running tests. Verify the current test result
 - Protect restricted endpoints with appropriate authentication and authorization.
 - Avoid exposing credentials or access tokens in logs and public documentation.
 
-## Future Improvements
+## Future Enhancements
 
-Potential enhancements include:
-
-- A customer-facing web interface.
-- A staff dashboard for queue operations.
-- Notifications when a customer's turn approaches.
-- Containerized deployment.
-- Cloud deployment with monitoring and logging.
+- Frontend dashboard for customers and staff
+- Admin dashboard for managing services and staff
+- Enhanced real-time queue notifications
+- Automated testing and CI/CD pipeline
+- Advanced queue analytics and reporting
 
 These are potential future improvements, not claims about existing functionality.
 
